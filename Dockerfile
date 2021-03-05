@@ -1,15 +1,21 @@
+FROM ubuntu:trusty
+
 ARG _base_url="https://download.altera.com/akdlm/software/acdsinst"
 ARG _mainver=20.1
 ARG _patchver=.1
 ARG _buildver=720
 ARG pkgver=${_mainver}${_patchver}.${_buildver}
-ARG source=source=${_base_url}/${_mainver}std${_patchver/.0/}/${_buildver}/ib_installers/QuartusLiteSetup-${pkgver}-linux.run
-ARG cyclone=${_base_url}/${_mainver}std${_patchver/.0/}/${_buildver}/ib_installers/cyclone10lp-${pkgver}.qdz
+ARG source=${_base_url}/${_mainver}std${_patchver:-.0}/${_buildver}/ib_installers/QuartusLiteSetup-${pkgver}-linux.run
+ARG cyclone=${_base_url}/${_mainver}std${_patchver:-.0}/${_buildver}/ib_installers/cyclone10lp-${pkgver}.qdz
 
-FROM ubuntu:trusty
 WORKDIR /quartus
-# RUN wget $source
-# RUN wget §cyclone
+RUN apt-get update && \
+    apt-get install -y \
+    wget \
+    && rm -rf /var/lib/apt/lists/*
+
+# RUN wget ${source}
+# RUN wget ${cyclone}
 COPY QuartusLiteSetup-20.1.1.720-linux.run .
 COPY cyclone10lp-20.1.1.720.qdz .
 RUN chmod +x QuartusLiteSetup-20.1.1.720-linux.run
