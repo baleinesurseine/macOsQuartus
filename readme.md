@@ -16,6 +16,7 @@ The solution is to install and run Quartus on a Linux distribution running in a 
 
 * You must have downloaded the installation file from altera in the folder where dockerfile resides. (this is a huge file, more than 2G). The link is : <https://download.altera.com/akdlm/software/acdsinst/20.1std.1/720/ib_installers/QuartusLiteSetup-20.1.1.720-linux.run>
 * You must also download the files for your specific FPGA, e.g. : <https://download.altera.com/akdlm/software/acdsinst/20.1std.1/720/ib_installers/cyclone10lp-20.1.1.720.qdz>
+* These pieces of software are licensed material from Intel corporation. Please read the Licence Agreement in QUARTUS_LICENSE. The LICENSE file applies only to the Dockerfile and readme files, and not to these Intel licensed softwares.
 * In a shell terminal, run `docker build -t quartus .`
 * NB: don't forget the ending dot !
 
