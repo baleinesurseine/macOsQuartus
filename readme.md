@@ -14,7 +14,7 @@ The solution is to install and run Quartus on a Linux distribution running in a 
 
 ## build docker image
 
-* You must have downloaded the installation file from altera in the folder where dockerfile resides. (this is a HUGE file, more than 2G). The link is : <https://download.altera.com/akdlm/software/acdsinst/20.1std.1/720/ib_installers/QuartusLiteSetup-20.1.1.720-linux.run>
+* You must have downloaded the installation file from altera in the folder where dockerfile resides. (this is a huge file, more than 2G). The link is : <https://download.altera.com/akdlm/software/acdsinst/20.1std.1/720/ib_installers/QuartusLiteSetup-20.1.1.720-linux.run>
 * You must also download the files for your specific FPGA, e.g. : <https://download.altera.com/akdlm/software/acdsinst/20.1std.1/720/ib_installers/cyclone10lp-20.1.1.720.qdz>
 * In a shell terminal, run `docker build -t quartus .`
 * NB: don't forget the ending dot !
@@ -24,3 +24,5 @@ The resulting docker image will have a size ~10G
 ## run Quartus
 
 Run this shell command: `docker run --rm -d -e DISPLAY=host.docker.internal:0 --net=host --volume=/shared/folder:/macOS/shared/folder quartus`
+
+`/shared/folder` is a folder on macOS side (you can choose whatever folder you need). `/macOS/shared/folder` is the path of this shared folder inside the docker container, it can be accessed inside Quartus.
