@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+open --hide /Applications/Utilities/XQuartz.app
+/opt/X11/bin/xhost + localhost
+/usr/local/bin/docker run --rm -d -e DISPLAY=host.docker.internal:0 --net=host --volume=$HOME:/root/macOS quartus
+

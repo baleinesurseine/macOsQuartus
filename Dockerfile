@@ -40,6 +40,6 @@ RUN apt-get update && apt-get install -y \
     firefox \
     && rm -rf /var/lib/apt/lists/*
 
-WORKDIR /quartus
 COPY --from=0 /quartus /quartus/
+WORKDIR /root
 CMD /quartus/quartus/bin/quartus
