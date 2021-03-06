@@ -20,8 +20,8 @@ RUN apt-get update && \
 # RUN wget ${cyclone10lp}
 COPY QuartusLiteSetup-${pkgver}-linux.run .
 COPY cyclone10lp-${pkgver}.qdz .
-RUN chmod +x QuartusLiteSetup-${pkgver}-linux.run
-RUN ./QuartusLiteSetup-${pkgver}-linux.run \
+RUN chmod +x QuartusLiteSetup-${pkgver}-linux.run \ 
+    && ./QuartusLiteSetup-${pkgver}-linux.run \
   --mode unattended \
   --unattendedmodeui none \
   --installdir . \
@@ -33,15 +33,15 @@ RUN rm -rf ./QuartusLiteSetup-${pkgver}-linux.run \
 
 FROM ubuntu:trusty
 
+COPY --from=quartus /quartus /quartus/
+
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
     software-properties-common
 
-RUN add-apt-repository ppa:mozillateam/ppa
-RUN apt-get update && apt-get install -y \
+RUN add-apt-repository ppa:mozillateam/ppa \
+    && apt-get update && apt-get install -y --no-install-recommends \
     firefox \
     && rm -rf /var/lib/apt/lists/*
-
-COPY --from=quartus /quartus /quartus/
 
 CMD /quartus/quartus/bin/quartus
