@@ -27,3 +27,9 @@ The resulting docker image will have a size ~10G
 Run this shell command: `docker run --rm -d -e DISPLAY=host.docker.internal:0 --net=host --volume=/shared/folder:/macOS/shared/folder quartus`
 
 `/shared/folder` is a folder on macOS side (you can choose whatever folder you need). `/macOS/shared/folder` is the path of this shared folder inside the docker container, it can be accessed inside Quartus.
+
+## macOS application
+
+The process of launching XQuartz, and runing the docker shell command has been bundled into a macOS **Quartus ii.app** application. The user's home directory is mapped to /root inside the linux container.
+
+This app is only a launcher : it bounces in the dock until Quartz and the quartus app are up and running, then it disapears from the dock, since Quartus runs now independently in a docker container.
