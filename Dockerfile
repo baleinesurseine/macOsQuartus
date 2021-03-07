@@ -1,7 +1,5 @@
 FROM ubuntu:trusty AS quartus
 
-LABEL maintainer="edouard.fischer@gmail.com"
-
 ARG _base_url="https://download.altera.com/akdlm/software/acdsinst"
 ARG _mainver=20.1
 ARG _patchver=.1
@@ -10,11 +8,11 @@ ARG pkgver=${_mainver}${_patchver}.${_buildver}
 ARG source=${_base_url}/${_mainver}std${_patchver:-.0}/${_buildver}/ib_installers/QuartusLiteSetup-${pkgver}-linux.run
 ARG cyclone10lp=${_base_url}/${_mainver}std${_patchver:-.0}/${_buildver}/ib_installers/cyclone10lp-${pkgver}.qdz
 
-WORKDIR /quartus
-RUN apt-get update && \
-    apt-get install --no-install-recommends -y \
-    wget \
-    && rm -rf /var/lib/apt/lists/*
+# WORKDIR /quartus
+# RUN apt-get update && \
+#     apt-get install --no-install-recommends -y \
+#     wget \
+#     && rm -rf /var/lib/apt/lists/*
 
 # RUN wget ${source}
 # RUN wget ${cyclone10lp}
@@ -32,6 +30,7 @@ RUN rm -rf ./QuartusLiteSetup-${pkgver}-linux.run \
 
 
 FROM ubuntu:trusty
+LABEL maintainer="edouard.fischer@gmail.com"
 
 COPY --from=quartus /quartus /quartus/
 
@@ -44,4 +43,4 @@ RUN add-apt-repository ppa:mozillateam/ppa \
     firefox \
     && rm -rf /var/lib/apt/lists/*
 
-CMD /quartus/quartus/bin/quartus
+CMD /quartus/bin/quartus
