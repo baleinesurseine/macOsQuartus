@@ -10,7 +10,6 @@ ARG cyclone10lp=${_base_url}/${_mainver}std${_patchver:-.0}/${_buildver}/ib_inst
 
 # WORKDIR /quartus
 # RUN apt-get update && \
-#     apt-get install --no-install-recommends -y \
 #     wget \
 #     && rm -rf /var/lib/apt/lists/*
 
