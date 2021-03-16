@@ -8,7 +8,7 @@ ARG pkgver=${_mainver}${_patchver}.${_buildver}
 ARG source=${_base_url}/${_mainver}std${_patchver:-.0}/${_buildver}/ib_installers/QuartusLiteSetup-${pkgver}-linux.run
 ARG cyclone10lp=${_base_url}/${_mainver}std${_patchver:-.0}/${_buildver}/ib_installers/cyclone10lp-${pkgver}.qdz
 
-# WORKDIR /quartus
+WORKDIR /quartus
 # RUN apt-get update && \
 #     wget \
 #     && rm -rf /var/lib/apt/lists/*
@@ -16,15 +16,25 @@ ARG cyclone10lp=${_base_url}/${_mainver}std${_patchver:-.0}/${_buildver}/ib_inst
 # RUN wget ${source}
 # RUN wget ${cyclone10lp}
 COPY QuartusLiteSetup-${pkgver}-linux.run .
+COPY ModelSimSetup-${pkgver}-linux.run .
 COPY cyclone10lp-${pkgver}.qdz .
 RUN chmod +x QuartusLiteSetup-${pkgver}-linux.run \ 
     && ./QuartusLiteSetup-${pkgver}-linux.run \
   --mode unattended \
   --unattendedmodeui none \
   --installdir . \
-  --disable-components quartus_help,modelsim_ase,modelsim_ae \
+  --disable-components quartus_help,quartus_help,modelsim_ase,modelsim_ae \
   --accept_eula 1
+
+RUN chmod +x ModelSimSetup-${pkgver}-linux.run \ 
+    && ./ModelSimSetup-${pkgver}-linux.run \
+  --mode unattended \
+  --unattendedmodeui none \
+  --installdir . \
+  --accept_eula 1
+
 RUN rm -rf ./QuartusLiteSetup-${pkgver}-linux.run \
+    && rm -rf ./ModelSimSetup-${pkgver}-linux.run \
     && rm -rf ./cyclone10lp-${pkgver}.qdz
 
 
@@ -42,4 +52,4 @@ RUN add-apt-repository ppa:mozillateam/ppa \
     firefox \
     && rm -rf /var/lib/apt/lists/*
 
-CMD /quartus/bin/quartus
+CMD /quartus/quartus/bin/quartus
