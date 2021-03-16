@@ -68,12 +68,16 @@ RUN tar xjf freetype-2.4.12.tar.bz2 \
     && make \
     && mkdir /quartus/modelsim_ase/lib32 \
     && cp /quartus/freetype-2.4.12/objs/.libs/libfreetype.so* /quartus/modelsim_ase/lib32/ \
-    && rm -rf ./freetype-2.4.12 \
-    && rm -rf freetype-2.4.12.tar.bz2
+    && rm -rf /quartus/freetype-2.4.12 \
+    && rm -rf /quartus/freetype-2.4.12.tar.bz2
 
 
 FROM ubuntu:trusty
+
 LABEL maintainer="edouard.fischer@gmail.com"
+LABEL author="Edouard FISCHER"
+LABEL copyright="Copyright (c) 2021 Edouard FISCHER"
+LABEL licence="GNU GENERAL PUBLIC LICENSE"
 
 COPY --from=quartus /quartus /quartus/
 
