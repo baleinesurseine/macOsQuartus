@@ -24,7 +24,7 @@ RUN apt-get update && \
     libgtk-3-0:i386 libcanberra0:i386 libice6:i386 libsm6:i386 \
     libncurses5:i386 zlib1g:i386 libx11-6:i386 libxau6:i386 \
     libxdmcp6:i386 libxext6:i386 libxft2:i386 libxrender1:i386 \
-    && rm -rf /var/lib/apt/lists/*
+    && rm -rf /var/lib/apt/lists/* && rm -rf /var/cache/apt
 
 # RUN wget ${source_quartus}
 # RUN wget ${cyclone10lp}
@@ -93,13 +93,13 @@ RUN dpkg --add-architecture i386 \
     libxdmcp6:i386 libxext6:i386 libxft2:i386 libxrender1:i386 \
     libxml2:i386 libcanberra-gtk-module:i386 \
     gtk2-engines-murrine:i386 libatk-adaptor:i386 \
-    && rm -rf /var/lib/apt/lists/*
+    && rm -rf /var/lib/apt/lists/* && rm -rf /var/cache/apt
 
 # install firefox to show help pages in Quartus
 RUN add-apt-repository ppa:mozillateam/ppa \
     && apt-get update && apt-get install -y --no-install-recommends \
     firefox \
-    && rm -rf /var/lib/apt/lists/*
+    && rm -rf /var/lib/apt/lists/* && rm -rf /var/cache/apt
 
 # install adobe acrobat reader to show help pages in ModelSim
 COPY adobe.deb .
