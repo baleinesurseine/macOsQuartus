@@ -91,5 +91,5 @@ $RECYCLE.BIN/
 *.qdz
 *.run
 *.tar.bz2
-
+*.deb
 root

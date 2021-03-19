@@ -35,7 +35,7 @@ RUN chmod +x QuartusLiteSetup-${pkgver}-linux.run \
     --mode unattended \
     --unattendedmodeui none \
     --installdir . \
-    --disable-components quartus_help,modelsim_ase,modelsim_ae \
+    --disable-components quartus_help \
     --accept_eula 1 \
     && rm -rf ./QuartusLiteSetup-${pkgver}-linux.run \
     && rm -rf ./cyclone10lp-${pkgver}.qdz
@@ -93,6 +93,7 @@ RUN dpkg --add-architecture i386 \
     libxdmcp6:i386 libxext6:i386 libxft2:i386 libxrender1:i386 \
     libxml2:i386 libcanberra-gtk-module:i386 \
     gtk2-engines-murrine:i386 libatk-adaptor:i386 \
+    libxtst6 \
     && rm -rf /var/lib/apt/lists/* && rm -rf /var/cache/apt
 
 # install firefox to show help pages in Quartus
