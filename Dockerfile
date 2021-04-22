@@ -59,6 +59,7 @@ RUN chmod u+w /quartus/modelsim_ase/vco \
                /quartus/modelsim_ase/vco
 
 # build and install 32bits freetype lib
+# wget http://download.savannah.gnu.org/releases/freetype/freetype-2.4.12.tar.bz2
 COPY freetype-2.4.12.tar.bz2 .
 RUN tar xjf freetype-2.4.12.tar.bz2 \
     && cd freetype-2.4.12/ \
