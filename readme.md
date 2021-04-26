@@ -6,11 +6,11 @@ Quartus II from Intel/Altera can be installed on Windows and Linux only.
 
 The solution is to install and run Quartus on a Linux distribution running in a docker container. The X11 graphical interface is channeled to the macOS and viewed with XQuartz.
 
-## macOS setup
+## macOS setup for X11
 
 * Install and run [XQuartz](https://www.xquartz.org "XQuartz")
-* In preferences/security, allow connections from network clients
-* run `xhost + localhost` in a shell terminal
+* From XQuartz Preferences, in the Security tab, make sure "Allow connections from network clients" is enabled. Restart XQuartz if you changed this option.
+* run `xhost + localhost` in a shell terminal on the host
 
 ## build docker image
 
